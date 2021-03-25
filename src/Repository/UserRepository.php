@@ -36,6 +36,18 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
+    public function getDeelnemers($activiteitid)
+    {
+        $em=$this->getEntityManager();
+
+
+        $query=$em->createQuery("SELECT d FROM App:User d WHERE :activiteitid MEMBER OF d.activiteiten");
+
+        $query->setParameter('activiteitid',$activiteitid);
+
+        return $query->getResult();
+    }
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

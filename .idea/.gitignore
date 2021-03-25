@@ -2,7 +2,7 @@
 /shelf/
 /workspace.xml
 # Datasource local storage ignored files
-/../../../../../:\xampp\htdocs\karting\.idea/dataSources/
+/../../../../../../:\Users\VM-302248598\phpstorm\karting_4.4\.idea/dataSources/
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/

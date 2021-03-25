@@ -1,0 +1,82 @@
+{% extends 'bezoeker.html.twig' %}
+{% block menu %}
+    <li><a href="{{ path('homepage') }}">home</a></li>
+    <li class="active"><a href="{{ path('kartactiviteiten') }}">aanbod</a></li>
+    <li><a href="{{ path('registreren') }}">registreren</a></li>
+    <li><a href="#">contact</a></li>
+{% endblock %}
+{% block content %}
+    <section >
+        <article>
+            <h3>Er zijn {{ soortactiviteiten|length }} soorten activiteiten </h3>
+
+            {% for activiteit in soortactiviteiten %}
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ activiteit.naam }}</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-borderless">
+                        <tr>
+                            <th style="border-top: 0;">minimum leeftijd</th>
+                            <th style="border-top: 0;">tijdsduur</th>
+                            <th style="border-top: 0;">prijs</th>
+                        </tr>
+                        <tr>
+                            <td style="border-top: 0;">{{ activiteit.minLeeftijd }}</td>
+                            <td style="border-top: 0;">{{ activiteit.tijdsduur }}</td>
+                            <td style="border-top: 0;">{{ activiteit.prijs }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            {% endfor %}
+
+
+{#            <div class="accordion accordion-flush" id="accordionFlushExample">#}
+{#                {% for activiteit in soortactiviteiten %}#}
+{#                    <div class="accordion-item">#}
+{#                        <h2 class="accordion-header" id="flush-heading{{ loop.index }}One">#}
+{#                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ loop.index }}One" aria-expanded="false" aria-controls="flush-collapse{{ loop.index }}One">#}
+{#                                {{ activiteit.naam }}#}
+{#                            </button>#}
+{#                        </h2>#}
+{#                        <div id="flush-collapse{{ loop.index }}One" class="accordion-collapse collapse" aria-labelledby="flush-heading{{ loop.index }}One" data-bs-parent="#accordionFlushExample">#}
+{#                            <div class="accordion-body">#}
+{#                                <table class="table table-borderless">#}
+{#                                    <tr>#}
+{#                                        <th>minimum leeftijd</th>#}
+{#                                        <th>tijdsduur</th>#}
+{#                                        <th>prijs</th>#}
+{#                                    </tr>#}
+{#                                    <tr>#}
+{#                                        <td>{{ activiteit.minLeeftijd }}</td>#}
+{#                                        <td>{{ activiteit.tijdsduur }}</td>#}
+{#                                        <td>{{ activiteit.prijs }}</td>#}
+{#                                    </tr>#}
+{#                                </table>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                {% endfor %}#}
+{#            </div>#}
+            <br>
+
+{#            <ul class="list-group">
+                {% for activiteit in soortactiviteiten %}
+                <li class="list-group-item text-primary">{{ activiteit.naam }}</li>
+                {% endfor %}
+            </ul>#}
+            <p>
+                Let op, voor het karten zijn dichte schoenen verplicht.
+                Karten met een korte broek is niet toegestaan. Wij hebben overalls ter beschikking,
+                maar probeer indien mogelijk een lange broek aan te doen of mee te nemen.
+            </p>
+        </article>
+        <figure>
+            <img class="img-responsive center-block" style="width:30%" src={{ asset('assets/img/kart.jpg') }} alt="kart" />
+        </figure>
+    </section>
+{% endblock %}
