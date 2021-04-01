@@ -4,8 +4,11 @@ namespace App\Controller;
 
 
 use App\Entity\Activiteiten;
+use App\Entity\Soortactiviteiten;
 use App\Form\ActiviteitType;
+use App\Form\SoortactiviteitenType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\ResetType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -153,5 +156,29 @@ class MedewerkerController extends AbstractController
         );
         return $this->redirectToRoute('beheer');
 
+    }
+
+
+    /**
+     * @Route("/admin/soortactiviteiten/new", name="soortactiviteiten_new", methods={"GET","POST"})
+     */
+    public function new(Request $request): Response
+    {
+        $soortactiviteiten = new Soortactiviteiten();
+        $form = $this->createForm(SoortactiviteitenType::class, $soortactiviteiten);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($soortactiviteiten);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('soortactiviteiten_index');
+        }
+
+        return $this->render('soortactiviteiten/new.html.twig', [
+            'soortactiviteiten' => $soortactiviteiten,
+            'form' => $form->createView(),
+        ]);
     }
 }

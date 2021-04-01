@@ -39,7 +39,12 @@
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
                         {% block menu %}
+                            <li class="active"><a href="{{ path('homepage') }}">home</a></li>
+                            <li><a href="{{ path('kartactiviteiten') }}">aanbod</a></li>
 
+
+                            <li><a href="{{ path('registreren') }}">registreren</a></li>
+                            <li><a href="#">contact</a></li>
                         {% endblock %}
 
                     </ul>
