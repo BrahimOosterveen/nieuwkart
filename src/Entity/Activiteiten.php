@@ -56,6 +56,11 @@ class Activiteiten
 
     private $users;
 
+    /**
+     * @ORM\Column(type="bigint")
+     */
+    private $hvldeelnemers;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -133,6 +138,18 @@ class Activiteiten
     public function setSoort($soort)
     {
         $this->soort=$soort;
+    }
+
+    public function getHvldeelnemers(): ?string
+    {
+        return $this->hvldeelnemers;
+    }
+
+    public function setHvldeelnemers(string $hvldeelnemers): self
+    {
+        $this->hvldeelnemers = $hvldeelnemers;
+
+        return $this;
     }
 }
 

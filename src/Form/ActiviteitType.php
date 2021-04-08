@@ -25,7 +25,8 @@ class ActiviteitType extends AbstractType
                 'widget'=>'single_text','html5' => false,])
             ->add('soort', EntityType::class,
                 array('class' => 'App:Soortactiviteiten',
-                    'choice_label' => 'naam',));
+                    'choice_label' => 'naam',))
+            ->add('hvldeelnemers');
     }
     public function configureOptions(OptionsResolver $resolver)
     {

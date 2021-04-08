@@ -1,0 +1,16 @@
+{% extends 'medewerker.html.twig' %}
+{% block title %}Edit deelnemer{% endblock %}
+{% block menu %}
+    <li ><a href="{{ path('activiteitenoverzicht') }}">home</a></li>
+    <li class="active"><a href="{{ path('soortactiviteiten_new') }}">soort activiteiten</a></li>
+    <li><a href="{{ path('beheer') }}">beheer</a></li>
+{% endblock %}
+{% block content %}
+    <h1>Edit deelnemer</h1>
+
+    {{ include('medewerker/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('deelnemers') }}">back to list</a>
+
+    {{ include('medewerker/_delete_form.html.twig') }}
+{% endblock %}

@@ -18,11 +18,13 @@
             <td>tijd</td>
             <td>soort activiteit</td>
             <td>prijs</td>
+            <td>aantal deelnemers</td>
             <td>schrijf in</td>
         </tr>
         </thead>
         <tbody>
         {% for activiteit in beschikbare_activiteiten %}
+            {% if date(activiteit.datum|date("d-m-Y") ~ " " ~ activiteit.tijd|date("H:i")) >= date() %}
         <tr>
             <td>
                 {{ activiteit.datum|date("d-m-Y")}}
@@ -37,6 +39,10 @@
             <td>
                 &euro;{{ activiteit.soort.prijs|number_format(2,',','.')}}
             </td>
+            <td>
+                {{ activiteit.users|length}}/{{ activiteit.hvldeelnemers}}
+            </td>
+            {% if activiteit.users|length < activiteit.hvldeelnemers %}
             <td title="schrijf in voor activiteit">
 
 
@@ -44,7 +50,13 @@
                     <span class="glyphicon glyphicon-plus" style="color:red"></span>
                 </a>
             </td>
+            {% else %}
+                <td>
+                    <p>De activieiten staan vol</p>
+                </td>
+            {% endif %}
         </tr>
+            {% endif %}
         {% endfor %}
         </tbody>
     </table>
