@@ -1,0 +1,42 @@
+{% extends 'medewerker.html.twig' %}
+
+{% block title %}Soortactiviteiten{% endblock %}
+{% block menu %}
+    <li ><a href="{{ path('activiteitenoverzicht') }}">home</a></li>
+    <li class="active"><a href="{{ path('soortactiviteiten_new') }}">soort activiteiten</a></li>
+    <li><a href="{{ path('beheer') }}">beheer</a></li>
+{% endblock %}
+{% block content %}
+    <h1>Soortactiviteiten</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ soortactiviteiten.id }}</td>
+            </tr>
+            <tr>
+                <th>Naam</th>
+                <td>{{ soortactiviteiten.naam }}</td>
+            </tr>
+            <tr>
+                <th>MinLeeftijd</th>
+                <td>{{ soortactiviteiten.minLeeftijd }}</td>
+            </tr>
+            <tr>
+                <th>Tijdsduur</th>
+                <td>{{ soortactiviteiten.tijdsduur }}</td>
+            </tr>
+            <tr>
+                <th>Prijs</th>
+                <td>{{ soortactiviteiten.prijs }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('soortactiviteiten_index') }}">back to list</a>
+
+    <a href="{{ path('soortactiviteiten_edit', {'id': soortactiviteiten.id}) }}">edit</a>
+
+    {{ include('soortactiviteiten/_delete_form.html.twig') }}
+{% endblock %}

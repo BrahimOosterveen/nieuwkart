@@ -1,0 +1,46 @@
+{% extends 'medewerker.html.twig' %}
+
+{% block title %}Soortactiviteiten index{% endblock %}
+
+{% block menu %}
+    <li ><a href="{{ path('activiteitenoverzicht') }}">home</a></li>
+    <li class="active"><a href="{{ path('soortactiviteiten_new') }}">soort activiteiten</a></li>
+    <li><a href="{{ path('beheer') }}">beheer</a></li>
+{% endblock %}
+{% block content %}
+    <h1>Soortactiviteiten s</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Naam</th>
+                <th>MinLeeftijd</th>
+                <th>Tijdsduur</th>
+                <th>Prijs</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for soortactiviteiten in soortactiviteitens %}
+            <tr>
+                <td>{{ soortactiviteiten.id }}</td>
+                <td>{{ soortactiviteiten.naam }}</td>
+                <td>{{ soortactiviteiten.minLeeftijd }}</td>
+                <td>{{ soortactiviteiten.tijdsduur }}</td>
+                <td>{{ soortactiviteiten.prijs }}</td>
+                <td>
+                    <a href="{{ path('soortactiviteiten_show', {'id': soortactiviteiten.id}) }}">show</a>
+                    <a href="{{ path('soortactiviteiten_edit', {'id': soortactiviteiten.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('soortactiviteiten_new') }}">Create new</a>
+{% endblock %}
