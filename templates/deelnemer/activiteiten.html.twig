@@ -1,6 +1,7 @@
 {% extends 'deelnemer.html.twig' %}
 {% block menu %}
     <li><a href="{{ path('activiteiten') }}">home</a></li>
+    <li><a href="/{{ app.user.id }}/edit" {%  if app.request.get('_route') == '/{{ app.user.id }}/edit' %} {% endif %}>gegevens</a></li>
 
 
 {% endblock %}

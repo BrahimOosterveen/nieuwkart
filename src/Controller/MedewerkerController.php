@@ -49,52 +49,9 @@ class MedewerkerController extends AbstractController
     }
 
 
-    /**
-     * @Route("/admin/deelnemer/update/{id}", name="update_deelnemer", methods={"GET","POST"})
-     */
-    public function updatedeelnemerAction($id,Request $request,User $user, UserPasswordEncoderInterface $encoder)
-    {
-        $a=$this->getDoctrine()
-            ->getRepository('App:User')
-            ->find($id);
 
-        $form = $this->createForm(UserType::class, $a);
-        $form->add('save', SubmitType::class, array('label'=>"aanpassen"));
 
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $encoded = $encoder->encodePassword($user, $user->getPassword());
-            $user->setPassword($encoded);
-            $entityManager->persist($user);
-            $entityManager->flush();
-            $this->addFlash(
-                'notice',
-                'activiteit aangepast!'
-            );
-            return $this->redirectToRoute('beheer');
-        }
 
-        $user=$this->getDoctrine()
-            ->getRepository('App:User')
-            ->findAll();
-
-        return $this->render('medewerker/deelnemer.html.twig',array('form'=>$form->createView(),'naam'=>'aanpassen','aantal'=>count($user)));
-    }
-
-    /**
-     * @Route("/admin/user/{id}/delete", name="user_delete", methods={"DELETE"})
-     */
-    public function userDelete(Request $request, User $user): Response
-    {
-        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($user);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('homepage');
-    }
 
     /**
      * @Route("/admin/details/{id}", name="details")
